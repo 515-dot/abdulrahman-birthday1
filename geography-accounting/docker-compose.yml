@@ -1,0 +1,29 @@
+# Production-style stack: app + PostgreSQL. Put a TLS-terminating reverse proxy
+# (Caddy / Nginx / your host's load balancer) in front of port 4000: session cookies are Secure-only.
+services:
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: geography_accounting
+      POSTGRES_USER: geo_user
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?set DB_PASSWORD in .env}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U geo_user -d geography_accounting"]
+      interval: 5s
+      retries: 10
+  app:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      db: { condition: service_healthy }
+    environment:
+      DATABASE_URL: postgres://geo_user:${DB_PASSWORD}@db:5432/geography_accounting
+      SESSION_SECRET: ${SESSION_SECRET:?set SESSION_SECRET in .env}
+      NODE_ENV: production
+    ports:
+      - "127.0.0.1:4000:4000"
+volumes:
+  pgdata:
