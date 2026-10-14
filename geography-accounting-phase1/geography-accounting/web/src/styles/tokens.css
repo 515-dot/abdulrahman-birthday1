@@ -1,0 +1,66 @@
+/*
+ * Geography Real Estate — design tokens
+ * Source colors were measured from the supplied logo (web/public/logo.jpg):
+ *   orange wordmark   ~ #F8A018   (accent)
+ *   taupe/brown icon  ~ #706050   (primary / neutral-dark)
+ *   steel-blue tagline~ #447894   (secondary)
+ * Orange fails WCAG contrast as text on white, so it is used for fills,
+ * highlights and charts only; text uses the darkened taupe/ink tones.
+ * The logo file itself is never recolored, cropped or redrawn.
+ */
+:root {
+  --brand-orange: #f8a018;
+  --brand-orange-strong: #d98400;   /* hover / pressed */
+  --brand-orange-soft: #fff1d9;     /* tinted backgrounds */
+  --brand-taupe: #706050;
+  --brand-taupe-deep: #4a3e33;      /* sidebar, headings */
+  --brand-taupe-ink: #2b231c;       /* body text */
+  --brand-blue: #447894;
+  --brand-blue-deep: #2f5a72;       /* links, secondary buttons (AA on white) */
+  --brand-blue-soft: #e6f0f5;
+
+  --bg: #faf8f5;
+  --surface: #ffffff;
+  --surface-2: #f3efe9;
+  --border: #e2dbd1;
+  --text: var(--brand-taupe-ink);
+  --text-muted: #6b5f53;
+  --primary: var(--brand-taupe-deep);
+  --on-primary: #ffffff;
+  --accent: var(--brand-orange);
+  --on-accent: #2b231c;
+  --link: var(--brand-blue-deep);
+  --sidebar-bg: var(--brand-taupe-deep);
+  --sidebar-text: #f1ebe3;
+
+  --positive: #2f7d4f;
+  --negative: #b3402f;
+  --warning: #b87400;
+
+  --chart-1: var(--brand-orange);
+  --chart-2: var(--brand-blue);
+  --chart-3: var(--brand-taupe);
+  --chart-4: #8fb3c7;
+  --chart-5: #e6c07b;
+
+  --radius: 10px;
+  --shadow: 0 1px 2px rgba(43, 35, 28, 0.06), 0 4px 14px rgba(43, 35, 28, 0.05);
+  --font-ar: "Noto Naskh Arabic", "Segoe UI", Tahoma, sans-serif;
+  --font-en: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+
+:root[data-theme="dark"] {
+  --bg: #1d1814;
+  --surface: #28211b;
+  --surface-2: #332a22;
+  --border: #4a3e33;
+  --text: #f1ebe3;
+  --text-muted: #b9ab9b;
+  --primary: var(--brand-orange);
+  --on-primary: #2b231c;
+  --link: #8fb3c7;
+  --sidebar-bg: #15110e;
+  --positive: #5cc08a;
+  --negative: #e5806f;
+  --warning: #f0b84a;
+}
