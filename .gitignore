@@ -1,0 +1,18 @@
+# secrets — never commit
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.dump
+*.sql.gz
+
+# build / tooling
+node_modules
+.next
+out
+.vercel
+*.tsbuildinfo
+next-env.d.ts
+coverage
+.DS_Store
